@@ -9,6 +9,7 @@ const rateLimit = require('express-rate-limit');
 const authRoutes = require('./routes/authRoutes');
 const donorRoutes = require('./routes/donorRoutes');
 const chatRoutes = require('./routes/chatRoutes');
+const hospitalRoutes = require('./routes/hospitalRoutes');
 const { handleSocket } = require('./socket/socketManager');
 
 const app = express();
@@ -39,6 +40,8 @@ app.get('/api/health', (_req, res) => res.json({ ok: true, ts: new Date() }));
 app.use('/api/auth', authRoutes);
 app.use('/api/donors', donorRoutes);
 app.use('/api/chat', chatRoutes);
+app.use('/api/users', hospitalRoutes); // mounts PUT /api/users/location
+app.use('/api/hospitals', hospitalRoutes); // mounts GET /api/hospitals/nearby
 
 // 404 handler
 app.use((_req, res) => res.status(404).json({ error: 'Route not found.' }));

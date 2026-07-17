@@ -10,6 +10,16 @@ const userSchema = new mongoose.Schema({
   city: { type: String, trim: true },
   state: { type: String, trim: true },
   area: { type: String, trim: true },
+  location: {
+    latitude: Number,
+    longitude: Number,
+    city: String,
+    district: String,
+    state: String,
+    country: String,
+    postalCode: String,
+    updatedAt: { type: Date, default: Date.now }
+  },
   availability: { type: Boolean, default: true },
   lastDonationDate: { type: Date, default: null },
   profilePhoto: { type: String, default: null },   // URL / base64
